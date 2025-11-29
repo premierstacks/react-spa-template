@@ -75,7 +75,7 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: 'npm run playwright:start',
+    command: 'npm run start:ci',
     url: 'http://localhost:3000/webpack-dev-server',
     reuseExistingServer: true,
     timeout: 5 * 60 * 1000,

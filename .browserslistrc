@@ -1,21 +1,8 @@
 [production]
-chrome >= 80
-edge >= 80
-firefox >= 80
-safari >= 14.1
-and_chr >= 80
-and_ff >= 80
-ios_saf >= 14.5
-samsung >= 13
+baseline widely available with downstream
 
 [development]
-last 1 chrome version
-last 1 edge version
-last 1 firefox version
-last 1 safari version
-last 1 and_chr version
-last 1 and_ff version
-last 1 ios_saf version
+baseline widely available
 
 [es2020]
 chrome >= 80

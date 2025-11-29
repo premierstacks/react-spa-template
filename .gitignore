@@ -14,3 +14,8 @@
 
 # playwright
 /test-results
+
+# icons
+/public/favicon*
+/public/icon*
+/public/apple-touch-icon*

@@ -4,6 +4,7 @@ import { WebpackStack } from '@premierstacks/webpack-stack';
 export default function (env, argv) {
   let stack = WebpackStack.create(env, argv)
     .base()
+    .browserslist()
     .entry({
       index: ['./src/index.ts'],
     })
@@ -19,7 +20,7 @@ export default function (env, argv) {
     .copy();
 
   if (stack.isProduction) {
-    stack = stack.gzip().brotli();
+    stack = stack.gzip().brotli().pwa();
   }
 
   return stack.build();

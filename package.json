@@ -1,24 +1,12 @@
 {
-  "name": "@premierstacks/browser-webpack-typescript-react-app-template",
-  "description": "premierstacks browser webpack typescript react app template",
-  "keywords": [
-    "tomchochola",
-    "tomaschochola",
-    "Tomas Chochola",
-    "Tomáš Chochola",
-    "premierstacks",
-    "browser-webpack-typescript-react-app-template"
-  ],
-  "homepage": "https://github.com/premierstacks/browser-webpack-typescript-react-app-template",
-  "bugs": {
-    "email": "chocholatom1997@gmail.com",
-    "url": "https://github.com/premierstacks/browser-webpack-typescript-react-app-template/issues"
-  },
-  "license": "CC-BY-ND-4.0",
   "author": {
     "email": "chocholatom1997@gmail.com",
     "name": "Tomáš Chochola",
     "url": "https://github.com/tomchochola"
+  },
+  "bugs": {
+    "email": "chocholatom1997@gmail.com",
+    "url": "https://github.com/premierstacks/browser-webpack-typescript-react-app-template/issues"
   },
   "contributors": [
     {
@@ -27,11 +15,6 @@
       "url": "https://github.com/tomchochola"
     }
   ],
-  "funding": {
-    "type": "github",
-    "url": "https://github.com/sponsors/tomchochola"
-  },
-  "repository": "github:premierstacks/browser-webpack-typescript-react-app-template",
   "dependencies": {
     "@opentelemetry/api": "^1.9.0",
     "@opentelemetry/api-logs": "^0.203.0",
@@ -57,6 +40,7 @@
     "sanitize.css": "^13.0.0",
     "web-vitals": "^5.1.0"
   },
+  "description": "premierstacks browser webpack typescript react app template",
   "devDependencies": {
     "@axe-core/playwright": "^4.10.2",
     "@playwright/test": "^1.55.0",
@@ -71,45 +55,56 @@
     "@types/react-dom": "^19.1.7",
     "csstype": "^3.1.3"
   },
-  "type": "module",
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/tomchochola"
+  },
+  "homepage": "https://github.com/premierstacks/browser-webpack-typescript-react-app-template",
+  "keywords": [
+    "tomchochola",
+    "tomaschochola",
+    "Tomas Chochola",
+    "Tomáš Chochola",
+    "premierstacks",
+    "browser-webpack-typescript-react-app-template"
+  ],
+  "license": "CC-BY-ND-4.0",
+  "name": "@premierstacks/browser-webpack-typescript-react-app-template",
+  "repository": "github:premierstacks/browser-webpack-typescript-react-app-template",
   "scripts": {
-    "check": "npm run stan && npm run lint && npm run test && npm run security",
-    "clean": "npm run clean:npm && npm run clean:dist",
-    "clean:dist": "git clean -xfd ./dist",
-    "clean:npm": "git clean -xfd ./node_modules ./package-lock.json",
-    "commit": "npm run fix && npm run check && npm run local",
-    "development": "npm run npm:install && npm run webpack:build:production -- --env APP_ENV=development",
-    "fix": "npm run stan && npm run fix:eslint && npm run fix:stylelint && npm run fix:prettier",
+    "build:ci": "webpack-cli build --mode=production --node-env=production --env APP_ENV=ci",
+    "build:development": "webpack-cli build --mode=production --node-env=production --env APP_ENV=development",
+    "build:local": "webpack-cli build --mode=production --node-env=production --env APP_ENV=local",
+    "build:production": "webpack-cli build --mode=production --node-env=production --env APP_ENV=production",
+    "build:qa": "webpack-cli build --mode=production --node-env=production --env APP_ENV=qa",
+    "build:staging": "webpack-cli build --mode=production --node-env=production --env APP_ENV=staging",
     "fix:eslint": "eslint --fix .",
     "fix:prettier": "prettier -w .",
     "fix:stylelint": "stylelint --fix ./**/*.{sass,scss,css}",
-    "lint": "npm run stan && npm run lint:eslint && npm run lint:stylelint && npm run lint:prettier",
     "lint:eslint": "eslint .",
     "lint:prettier": "prettier -c .",
     "lint:stylelint": "stylelint ./**/*.{sass,scss,css}",
-    "local": "npm run npm:install && npm run webpack:build:development -- --env APP_ENV=local",
-    "npm:audit": "npm audit --audit-level info --include prod --include dev --include peer --include optional",
-    "npm:install": "npm install --install-links --include prod --include dev --include peer --include optional --ignore-scripts",
-    "npm:update": "npm update --install-links --include prod --include dev --include peer --include optional --ignore-scripts",
+    "npm:audit": "\"$npm_node_execpath\" \"$npm_execpath\" audit --audit-level info --include prod --include dev --include peer --include optional",
+    "npm:install": "\"$npm_node_execpath\" \"$npm_execpath\" install --install-links --include prod --include dev --include peer --include optional --ignore-scripts",
+    "npm:update": "\"$npm_node_execpath\" \"$npm_execpath\" update --install-links --include prod --include dev --include peer --include optional --ignore-scripts",
+    "playwright:failed": "playwright test --last-failed",
+    "playwright:headed": "playwright test --headed",
     "playwright:install": "playwright install",
-    "playwright:start": "npm run webpack:serve:development -- --env APP_ENV=playwright",
     "playwright:test": "playwright test",
-    "production": "npm run npm:install && npm run webpack:build:production -- --env APP_ENV=production",
-    "security": "npm run npm:audit",
-    "staging": "npm run npm:install && npm run webpack:build:production -- --env APP_ENV=staging",
-    "stan": "npm run stan:typescript",
+    "playwright:ui": "playwright test --ui",
     "stan:typescript": "tsc --noEmit",
-    "start": "npm run webpack:serve:development -- --open --env APP_ENV=local",
-    "test": "npm run playwright:install && npm run playwright:test",
-    "test:failed": "npm run test -- -- --last-failed",
-    "test:ui": "npm run test -- -- --ui",
-    "test:headed": "npm run test -- -- --headed",
-    "testing": "npm run npm:install && npm run webpack:build:production -- --env APP_ENV=testing",
+    "start:ci": "webpack-cli serve --mode=development --node-env=development --env APP_ENV=ci",
+    "start:development": "webpack-cli serve --mode=development --node-env=development --env APP_ENV=development",
+    "start:local": "webpack-cli serve --mode=development --node-env=development --open --env APP_ENV=local",
+    "start:production": "webpack-cli serve --mode=development --node-env=development --env APP_ENV=production",
+    "start:qa": "webpack-cli serve --mode=development --node-env=development --env APP_ENV=qa",
+    "start:staging": "webpack-cli serve --mode=development --node-env=development --env APP_ENV=staging",
     "webpack:analyze:development": "webpack-cli build --mode=development --node-env=development --analyze",
     "webpack:analyze:production": "webpack-cli build --mode=production --node-env=production --analyze",
     "webpack:build:development": "webpack-cli build --mode=development --node-env=development",
     "webpack:build:production": "webpack-cli build --mode=production --node-env=production",
     "webpack:serve:development": "webpack-cli serve --mode=development --node-env=development",
     "webpack:serve:production": "webpack-cli serve --mode=production --node-env=production"
-  }
+  },
+  "type": "module"
 }

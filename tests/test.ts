@@ -18,31 +18,3 @@ export async function assertPage(page: Page, url: string): Promise<void> {
   await expect(page.locator('#webpack-dev-server-client-overlay')).not.toBeAttached();
   await assertAxe(page);
 }
-
-export async function assertPages(page: Page, url: string): Promise<void> {
-  await assertPage(page, url);
-
-  const visitedPages = new Set<string>();
-
-  async function recursive(next: string): Promise<void> {
-    const normalized = new URL(next, page.url());
-
-    if (visitedPages.has(normalized.pathname)) {
-      return;
-    }
-
-    visitedPages.add(normalized.pathname);
-
-    await assertPage(page, normalized.pathname);
-
-    const links = await page.locator('a[href]').evaluateAll((elements) => {
-      return elements.map((el) => el.getAttribute('href')).filter((href): href is string => typeof href === 'string');
-    });
-
-    for (const link of links) {
-      await recursive((new URL(link, page.url())).pathname);
-    }
-  }
-
-  await recursive(url);
-}

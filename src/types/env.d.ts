@@ -12,7 +12,7 @@ declare const process: {
     // regex: ^[a-zA-Z0-9-_]+$
     APP_NAME: string;
 
-    // 'local' | 'development' | 'testing' | 'staging' | 'production' | 'playwright'
+    // 'local' | 'ci' | 'development' | 'qa' | 'staging' | 'production'
     APP_ENV: string;
 
     // regex: ^[a-zA-Z0-9]+$

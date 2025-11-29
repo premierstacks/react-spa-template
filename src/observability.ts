@@ -28,21 +28,38 @@ import {
 import { ATTR_DEPLOYMENT_ENVIRONMENT_NAME } from '@opentelemetry/semantic-conventions/incubating';
 import { onCLS, onFCP, onINP, onLCP, onTTFB, type Metric } from 'web-vitals';
 
+const APP_NAME = process.env['APP_NAME'] ?? '';
+const APP_VERSION = process.env['APP_VERSION'] ?? '';
+const WEBPACK_MODE = process.env['WEBPACK_MODE'] ?? '';
+const OTLP_API_KEY = process.env['OTLP_API_KEY'] ?? '';
+
+if (APP_NAME === '') {
+  throw new Error('APP_NAME');
+}
+
+if (APP_VERSION === '') {
+  throw new Error('APP_VERSION');
+}
+
+if (WEBPACK_MODE === '') {
+  throw new Error('WEBPACK_MODE');
+}
+
 const resource = defaultResource()
   .merge(
     resourceFromAttributes({
-      [ATTR_SERVICE_NAME]: process.env.APP_NAME,
-      [ATTR_SERVICE_VERSION]: process.env.APP_VERSION,
-      [ATTR_DEPLOYMENT_ENVIRONMENT_NAME]: process.env.WEBPACK_MODE,
+      [ATTR_SERVICE_NAME]: APP_NAME,
+      [ATTR_SERVICE_VERSION]: APP_VERSION,
+      [ATTR_DEPLOYMENT_ENVIRONMENT_NAME]: WEBPACK_MODE,
       [ATTR_USER_AGENT_ORIGINAL]: navigator.userAgent,
     }),
   )
   .merge(detectResources({ detectors: [browserDetector] }));
 
 const headers
-  = process.env.OTLP_API_KEY !== null
+  = OTLP_API_KEY !== ''
     ? {
-        Authorization: `Bearer ${process.env.OTLP_API_KEY}`,
+        Authorization: `Bearer ${OTLP_API_KEY}`,
       }
     : undefined;
 
