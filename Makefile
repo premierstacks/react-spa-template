@@ -191,6 +191,7 @@ favicons: ./assets/icons/icon.svg
 	convert -size 192x192 canvas:none ./node_modules/temp.png -gravity center -composite ./public/icon-192x192-maskable.png
 	convert ./assets/icons/icon.svg -background none -density 300 -resize 410x410 ./node_modules/temp.png
 	convert -size 512x512 canvas:none ./node_modules/temp.png -gravity center -composite ./public/icon-512x512-maskable.png
+	cp ./assets/icons/icon.svg ./public/favicon.svg
 
 # Dependencies
 ./package-lock.json ./node_modules:

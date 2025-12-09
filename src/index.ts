@@ -10,4 +10,6 @@ import 'core-js/actual';
 
 import './observability';
 
+void navigator.serviceWorker.register('/sw.js');
+
 void import('./bootstrap');

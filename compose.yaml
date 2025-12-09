@@ -1,0 +1,11 @@
+services:
+  nginx:
+    build:
+      context: .
+      target: nginx
+    ports:
+      - '8080:8080'
+    read_only: true
+    restart: unless-stopped
+    tmpfs:
+      - /tmp
