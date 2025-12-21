@@ -1,16 +1,11 @@
-# generic
-.DS_Store
-.fleet
-.idea
-.vscode
-.zed
-
-# node
-/node_modules
-/package-lock.json
-
-# compiled files
-/dist
-
-# playwright
-/test-results
+*
+!/assets
+!/docker
+!/public
+!/src
+!/.browserslistrc
+!/package.json
+!/babel.config.js
+!/postcss.config.js
+!/tsconfig.json
+!/webpack.config.js

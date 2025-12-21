@@ -10,6 +10,12 @@ import 'core-js/actual';
 
 import './observability';
 
-void navigator.serviceWorker.register('/sw.js');
+navigator.serviceWorker.register('/sw.js')
+  .then(() => {
+    console.log('Service Worker registered successfully.');
+  })
+  .catch(() => {
+    console.error('Service Worker registration failed.');
+  });
 
 void import('./bootstrap');

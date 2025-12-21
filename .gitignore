@@ -12,6 +12,9 @@
 # compiled files
 /dist
 
+# environment files
+.env
+
 # playwright
 /test-results
 

@@ -67,33 +67,13 @@ help:
 	@echo '  help'
 	@echo '                    Show this operational guide.'
 
-.PHONY: local
-local: install favicons
-	${MAKE_NPM} run build:local
-
-.PHONY: ci
-ci: install favicons
-	${MAKE_NPM} run build:ci
-
-.PHONY: development
-development: install favicons
-	${MAKE_NPM} run build:development
-
-.PHONY: qa
-qa: install favicons
-	${MAKE_NPM} run build:qa
-
-.PHONY: staging
-staging: install favicons
-	${MAKE_NPM} run build:staging
-
-.PHONY: production
-production: install favicons
-	${MAKE_NPM} run build:production
+.PHONY: build
+build: favicons
+	${MAKE_NPM} run build
 
 .PHONY: start serve up server dev
-start serve up server dev: local
-	${MAKE_NPM} run start:local
+start serve up server dev: favicons
+	${MAKE_NPM} run start
 
 .PHONY: audit
 audit: audit_npm
@@ -192,6 +172,10 @@ favicons: ./assets/icons/icon.svg
 	convert ./assets/icons/icon.svg -background none -density 300 -resize 410x410 ./node_modules/temp.png
 	convert -size 512x512 canvas:none ./node_modules/temp.png -gravity center -composite ./public/icon-512x512-maskable.png
 	cp ./assets/icons/icon.svg ./public/favicon.svg
+
+.PHONY: postcreate
+postcreate:
+	${MAKE} build
 
 # Dependencies
 ./package-lock.json ./node_modules:

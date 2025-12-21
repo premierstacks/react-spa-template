@@ -1,0 +1,21 @@
+services:
+  runtime:
+    build:
+      context: './'
+      dockerfile: './Dockerfile'
+      target: 'runtime'
+    ports:
+      - '8080:8080'
+    environment:
+      APP_ENV: 'production'
+      NODE_ENV: 'production'
+      APP_VERSION: 'latest'
+    read_only: true
+    init: true
+    tmpfs:
+      - '/tmp:rw,nosuid,nodev,noexec,mode=1777,size=64m,noatime,nodiratime'
+    cap_drop:
+      - 'ALL'
+    security_opt:
+      - 'no-new-privileges:true'
+    restart: 'unless-stopped'

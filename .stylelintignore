@@ -5,9 +5,6 @@
 .vscode
 .zed
 
-# svg
-*.svg
-
 # node
 /node_modules
 /package-lock.json
@@ -15,5 +12,13 @@
 # compiled files
 /dist
 
+# environment files
+.env
+
 # playwright
 /test-results
+
+# icons
+/public/favicon*
+/public/icon*
+/public/apple-touch-icon*
